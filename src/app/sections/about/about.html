@@ -1,0 +1,57 @@
+<section id="sobre" class="section about" aria-labelledby="about-title">
+  <div class="container inner">
+    <div class="media" appReveal>
+      <figure class="frame">
+        @if (content.image.src; as src) {
+          <img
+            [ngSrc]="src"
+            [alt]="content.image.alt"
+            fill
+            sizes="(min-width: 960px) 40vw, 100vw"
+          />
+        } @else {
+          <div class="frame-placeholder">
+            <i class="ph ph-image" aria-hidden="true"></i>
+            <span>Foto institucional em breve</span>
+          </div>
+        }
+      </figure>
+
+      <p class="badge">
+        <span class="badge-icon" aria-hidden="true"
+          ><i class="ph {{ content.badge.icon }}"></i
+        ></span>
+        {{ content.badge.label }}
+      </p>
+    </div>
+
+    <div class="copy">
+      <p class="eyebrow" appReveal>Sobre nós</p>
+      <h2 id="about-title" class="section-title" appReveal="80">{{ content.title }}</h2>
+
+      @for (paragraph of content.paragraphs; track $index) {
+        <p class="section-lead" [appReveal]="160 + $index * 60">{{ paragraph }}</p>
+      }
+
+      <ul class="values">
+        @for (value of content.values; track value.title; let i = $index) {
+          <li class="value" [appReveal]="i * 100">
+            <span class="value-icon" aria-hidden="true"><i class="ph {{ value.icon }}"></i></span>
+            <div>
+              <h3 class="value-title">{{ value.title }}</h3>
+              <p class="value-text">{{ value.description }}</p>
+            </div>
+          </li>
+        }
+      </ul>
+
+      <div appReveal>
+        <a class="btn" [href]="contactUrl" target="_blank" rel="noopener noreferrer">
+          Converse com a gente
+          <i class="ph ph-arrow-right" aria-hidden="true"></i>
+          <span class="visually-hidden">(abre o WhatsApp em nova aba)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

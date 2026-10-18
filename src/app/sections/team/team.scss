@@ -1,0 +1,102 @@
+.grid {
+  display: grid;
+  gap: 1.25rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  height: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.6s var(--ease-out),
+    box-shadow 0.6s var(--ease-out);
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+
+    img,
+    .photo-placeholder .ph {
+      transform: scale(1.06);
+    }
+
+    .photo::after {
+      opacity: 1;
+    }
+  }
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 4 / 4.4;
+  border-radius: calc(var(--radius-lg) - 0.5rem);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, rgb(142 230 255 / 0.55), transparent 55%),
+    linear-gradient(170deg, #e6f2f8, #dbe5ee);
+
+  img {
+    object-fit: cover;
+    transition: transform 1s var(--ease-out);
+  }
+
+  /* Véu azul sutil no hover */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgb(11 37 64 / 0.25));
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.5rem;
+  color: var(--c-muted);
+  font-size: 0.875rem;
+  font-weight: 550;
+
+  .ph {
+    display: grid;
+    place-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.7);
+    color: var(--c-navy);
+    font-size: 2.25rem;
+    transition: transform 0.8s var(--ease-out);
+  }
+}
+
+.info {
+  padding: 1.25rem 0.75rem 0.75rem;
+}
+
+.name {
+  font-size: 1.1875rem;
+  color: var(--c-navy);
+}
+
+.role {
+  margin-top: 0.25rem;
+  color: var(--c-muted);
+  font-size: 0.9375rem;
+}

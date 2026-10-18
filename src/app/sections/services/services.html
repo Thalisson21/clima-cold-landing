@@ -1,0 +1,40 @@
+<section id="servicos" class="section" aria-labelledby="services-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow" appReveal>Nossos serviços</p>
+      <h2 id="services-title" class="section-title" appReveal="80">
+        Climatização completa, do projeto à manutenção.
+      </h2>
+      <p class="section-lead" appReveal="160">
+        Atendimento especializado para que seu ambiente tenha o conforto ideal em qualquer estação.
+      </p>
+    </header>
+
+    <ul class="grid">
+      @for (service of services; track service.title; let i = $index) {
+        <li [appReveal]="i * 120">
+          <article class="card" appSpotlight>
+            <div class="card-top">
+              <span class="icon" aria-hidden="true"><i class="ph {{ service.icon }}"></i></span>
+              <span class="number" aria-hidden="true">{{ service.number }}</span>
+            </div>
+
+            <h3 class="card-title">{{ service.title }}</h3>
+            <p class="card-text">{{ service.description }}</p>
+
+            <div class="card-foot">
+              <span class="tag">{{ service.tag }}</span>
+              <a class="text-link" [href]="service.url" target="_blank" rel="noopener noreferrer">
+                Solicitar orçamento
+                <span class="visually-hidden"
+                  >de {{ service.title }} pelo WhatsApp (abre em nova aba)</span
+                >
+                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

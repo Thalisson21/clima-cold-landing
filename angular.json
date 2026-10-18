@@ -30,6 +30,9 @@
               }
             ],
             "styles": [
+              "node_modules/@fontsource-variable/dm-sans/index.css",
+              "node_modules/@phosphor-icons/web/src/regular/style.css",
+              "node_modules/@phosphor-icons/web/src/fill/style.css",
               "src/styles.scss"
             ]
           },
@@ -43,8 +46,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "8kB",
+                  "maximumError": "12kB"
                 }
               ],
               "outputHashing": "all"

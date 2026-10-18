@@ -1,0 +1,100 @@
+<section id="inicio" class="hero" aria-labelledby="hero-title">
+  <div class="stage on-dark">
+    <app-hero-media #media />
+
+    <!-- Abertura: visível sobre o vídeo antes da rolagem -->
+    <div class="opening container" aria-hidden="true">
+      @if (!media.hasVideo) {
+        <span class="video-placeholder">
+          <i class="ph ph-video-camera"></i>
+          Vídeo institucional em breve
+        </span>
+      }
+      <p class="opening-mark">clima<span>cold</span></p>
+      <span class="opening-cue">
+        Role para descobrir
+        <span class="mouse"><span></span></span>
+      </span>
+    </div>
+
+    <div class="container inner">
+      <div class="copy" (focusin)="revealForFocus()">
+        <p class="eyebrow step" style="--s: 0.18">{{ content.eyebrow }}</p>
+
+        <h1 id="hero-title" class="title">
+          @for (word of words; track $index) {
+            <span class="word"
+              ><span [style.--d]="$index">{{ word }}</span></span
+            >&ngsp;
+          }
+        </h1>
+
+        <p class="lead step" style="--s: 0.4">{{ content.description }}</p>
+
+        <div class="actions step" style="--s: 0.46">
+          <a class="btn btn--accent" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+            <i class="ph ph-whatsapp-logo" aria-hidden="true"></i>
+            {{ content.primaryCta }}
+            <span class="visually-hidden">(abre o WhatsApp em nova aba)</span>
+          </a>
+          <a class="btn btn--ghost" href="#servicos">
+            {{ content.secondaryCta }}
+            <i class="ph ph-arrow-down" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <p class="trust step" style="--s: 0.52">
+          <span class="trust-icon" aria-hidden="true"><i class="ph ph-chat-circle-text"></i></span>
+          {{ content.trustNote }}
+        </p>
+      </div>
+
+      <div class="visual" aria-hidden="true">
+        <div class="orb">
+          <span class="ring ring--1"></span>
+          <span class="ring ring--2"></span>
+          <span class="ring ring--3"></span>
+          <span class="core"><i class="ph ph-snowflake"></i></span>
+        </div>
+
+        <div class="flow">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        @for (chip of content.chips; track chip.label; let i = $index) {
+          <span class="chip chip--{{ i + 1 }}">
+            <i class="ph {{ chip.icon }}"></i>
+            {{ chip.label }}
+          </span>
+        }
+
+        <div class="panel">
+          <span class="panel-icon"><i class="ph ph-thermometer-cold"></i></span>
+          <span class="panel-body">
+            <span class="panel-label">Conforto térmico</span>
+            <span class="panel-meter"><span></span></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    @if (media.hasVideo) {
+      <button
+        type="button"
+        class="video-toggle"
+        [attr.aria-label]="media.paused() ? 'Reproduzir vídeo de fundo' : 'Pausar vídeo de fundo'"
+        (click)="media.toggle()"
+      >
+        <i
+          class="ph-fill"
+          [class.ph-play]="media.paused()"
+          [class.ph-pause]="!media.paused()"
+          aria-hidden="true"
+        ></i>
+      </button>
+    }
+  </div>
+</section>
