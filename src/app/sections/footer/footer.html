@@ -1,0 +1,88 @@
+<footer class="footer on-dark">
+  <div class="container">
+    <div class="top">
+      <div class="brand">
+        <a href="#inicio" class="brand-link" aria-label="Clima Cold — voltar ao início">
+          <app-logo tone="light" />
+        </a>
+        <p class="description">{{ company.description }}</p>
+        <ul class="social" aria-label="Redes sociais">
+          <li>
+            <a
+              [href]="company.instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da Clima Cold (abre em nova aba)"
+            >
+              <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              [href]="company.linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn da Clima Cold (abre em nova aba)"
+            >
+              <i class="ph ph-linkedin-logo" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a
+              [href]="whatsappUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp da Clima Cold (abre em nova aba)"
+            >
+              <i class="ph ph-whatsapp-logo" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <nav class="col" aria-labelledby="footer-nav-title">
+        <h2 id="footer-nav-title" class="col-title">Navegação</h2>
+        <ul class="list">
+          @for (link of links; track link.id) {
+            <li>
+              <a class="link" [href]="'#' + link.id">{{ link.label }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <div class="col">
+        <h2 class="col-title">Contato</h2>
+        <ul class="list">
+          <li>
+            <a class="link contact" [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+              <i class="ph ph-whatsapp-logo" aria-hidden="true"></i>
+              <span
+                >{{ company.phoneLabel }}
+                <span class="visually-hidden">(WhatsApp, abre em nova aba)</span></span
+              >
+            </a>
+          </li>
+          <li>
+            <a class="link contact" [href]="'mailto:' + company.email">
+              <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+              <span>{{ company.email }}</span>
+            </a>
+          </li>
+          <li class="contact">
+            <i class="ph ph-map-pin" aria-hidden="true"></i>
+            <span>{{ company.location }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <p>© {{ year }} {{ company.legalName }}. Todos os direitos reservados.</p>
+      <a class="link back-top" href="#inicio">
+        Voltar ao topo
+        <i class="ph ph-arrow-up" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</footer>

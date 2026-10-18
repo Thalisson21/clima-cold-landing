@@ -1,0 +1,138 @@
+.footer {
+  position: relative;
+  padding-top: clamp(3.5rem, 8vw, 5.5rem);
+  background: var(--c-navy);
+  color: var(--c-on-dark-muted);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c-ice), transparent);
+    opacity: 0.4;
+  }
+}
+
+.top {
+  display: grid;
+  gap: 2.75rem;
+  padding-bottom: 3rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1.6fr 1fr 1.2fr;
+    gap: 3rem;
+  }
+}
+
+.brand {
+  display: grid;
+  justify-items: start;
+  gap: 1.25rem;
+  max-width: 22rem;
+}
+
+.brand-link {
+  border-radius: 0.75rem;
+}
+
+.description {
+  font-size: 0.9375rem;
+}
+
+.social {
+  display: flex;
+  gap: 0.625rem;
+
+  a {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 50%;
+    color: var(--c-on-dark);
+    font-size: 1.25rem;
+    transition:
+      transform 0.4s var(--ease-out),
+      background-color 0.3s ease,
+      color 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-3px);
+      background: var(--c-ice);
+      border-color: var(--c-ice);
+      color: var(--c-navy);
+    }
+  }
+}
+
+.col-title {
+  margin-bottom: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-on-dark);
+}
+
+.list {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  transition:
+    color 0.3s ease,
+    transform 0.4s var(--ease-out);
+
+  &:hover {
+    color: var(--c-ice);
+    transform: translateX(3px);
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  overflow-wrap: anywhere;
+
+  .ph {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    color: var(--c-ice);
+  }
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  /* Espaço para o botão flutuante do WhatsApp não cobrir o conteúdo */
+  padding-bottom: calc(1.5rem + 4.5rem + env(safe-area-inset-bottom));
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 0.875rem;
+
+  @media (min-width: 768px) {
+    padding-bottom: 1.5rem;
+    padding-right: 5rem;
+  }
+}
+
+.back-top {
+  gap: 0.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

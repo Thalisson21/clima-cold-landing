@@ -1,0 +1,67 @@
+<div class="bar">
+  <div class="container inner">
+    <a
+      class="brand"
+      href="#inicio"
+      aria-label="Clima Cold — voltar ao início"
+      (click)="closeMenu()"
+    >
+      <app-logo [tone]="onHero() ? 'light' : 'dark'" />
+    </a>
+
+    <nav id="main-nav" class="nav" aria-label="Navegação principal">
+      <ul class="nav-list">
+        @for (link of links; track link.id; let i = $index) {
+          <li [style.--i]="i">
+            <a
+              class="nav-link"
+              [href]="'#' + link.id"
+              [class.is-active]="activeId() === link.id"
+              [attr.aria-current]="activeId() === link.id ? 'true' : null"
+              (click)="closeMenu()"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <a
+        class="btn btn--accent nav-cta"
+        [href]="whatsappUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="closeMenu()"
+      >
+        <i class="ph ph-whatsapp-logo" aria-hidden="true"></i>
+        Vamos conversar
+        <span class="visually-hidden">(abre o WhatsApp em nova aba)</span>
+      </a>
+    </nav>
+
+    <a
+      class="btn btn--sm header-cta"
+      [class.btn--accent]="onHero()"
+      [href]="whatsappUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Vamos conversar
+      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+      <span class="visually-hidden">(abre o WhatsApp em nova aba)</span>
+    </a>
+
+    <button
+      #toggle
+      type="button"
+      class="menu-toggle"
+      aria-controls="main-nav"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Fechar menu' : 'Abrir menu'"
+      (click)="toggleMenu()"
+    >
+      <i class="ph" [class.ph-list]="!menuOpen()" [class.ph-x]="menuOpen()" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+<span class="progress" aria-hidden="true"></span>

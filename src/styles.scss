@@ -1,1 +1,421 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   Clima Cold — estilos globais
+   Tokens de design, base tipográfica, botões e utilitários compartilhados.
+   ========================================================================== */
+
+:root {
+  /* Paleta (tons frios adaptados ao branding Clima Cold) */
+  --c-navy: #0b2540;
+  --c-navy-2: #10345a;
+  --c-ink: #0f1e2e;
+  --c-ice: #8ee6ff;
+  --c-ice-soft: #d9f6ff;
+  --c-blue: #1d6fd8;
+  --c-bg: #f4f7f9;
+  --c-surface: #ffffff;
+  --c-muted: #4f5f6e;
+  --c-line: rgb(11 37 64 / 0.1);
+  --c-on-dark: #ffffff;
+  --c-on-dark-muted: rgb(255 255 255 / 0.74);
+
+  --font: 'DM Sans Variable', 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --radius-sm: 0.75rem;
+  --radius: 1.25rem;
+  --radius-lg: 2rem;
+
+  --shadow-sm: 0 1px 2px rgb(11 37 64 / 0.06), 0 2px 8px rgb(11 37 64 / 0.04);
+  --shadow: 0 2px 4px rgb(11 37 64 / 0.04), 0 12px 32px -8px rgb(11 37 64 / 0.12);
+  --shadow-lg: 0 4px 8px rgb(11 37 64 / 0.04), 0 28px 60px -16px rgb(11 37 64 / 0.24);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --header-h: 4.5rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --container: 75rem;
+  --section-y: clamp(4.5rem, 10vw, 8rem);
+}
+
+/* ---------- Reset & base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--c-ink);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--c-ice);
+  color: var(--c-navy);
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-blue);
+  outline-offset: 3px;
+  border-radius: 0.375rem;
+}
+
+.on-dark :focus-visible,
+.on-dark:focus-visible {
+  outline-color: var(--c-ice);
+}
+
+.ph,
+.ph-fill {
+  line-height: 1;
+}
+
+/* ---------- Acessibilidade ---------- */
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--c-navy);
+  color: var(--c-on-dark);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.3s var(--ease-out);
+
+  &:focus-visible {
+    transform: none;
+    outline-color: var(--c-ice);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.section-head {
+  display: grid;
+  gap: 1rem;
+  max-width: 40rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+
+  &--center {
+    margin-inline: auto;
+    text-align: center;
+    justify-items: center;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-blue);
+
+  &::before {
+    content: '';
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .on-dark & {
+    color: var(--c-ice);
+  }
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.6vw, 3.25rem);
+}
+
+.section-lead {
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  color: var(--c-muted);
+
+  .on-dark & {
+    color: var(--c-on-dark-muted);
+  }
+}
+
+/* ---------- Botões ---------- */
+
+.btn {
+  --btn-bg: var(--c-navy);
+  --btn-fg: var(--c-on-dark);
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 3.25rem;
+  padding: 0.875rem 1.625rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out),
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+
+  .ph,
+  .ph-fill {
+    font-size: 1.25rem;
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  /* Reflexo de luz que atravessa o botão no hover */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.35) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.8s var(--ease-out);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -12px rgb(11 37 64 / 0.45);
+
+    &::after {
+      transform: translateX(120%);
+    }
+
+    .ph-arrow-right,
+    .ph-arrow-up-right {
+      transform: translateX(3px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &--accent {
+    --btn-bg: var(--c-ice);
+    --btn-fg: var(--c-navy);
+  }
+
+  &--ghost {
+    --btn-bg: transparent;
+    --btn-fg: var(--c-navy);
+    border-color: rgb(11 37 64 / 0.2);
+
+    &:hover {
+      --btn-bg: var(--c-surface);
+      border-color: rgb(11 37 64 / 0.35);
+      box-shadow: var(--shadow);
+    }
+  }
+
+  .on-dark &--ghost {
+    --btn-fg: var(--c-on-dark);
+    border-color: rgb(255 255 255 / 0.32);
+
+    &:hover {
+      --btn-bg: rgb(255 255 255 / 0.1);
+      border-color: rgb(255 255 255 / 0.55);
+    }
+  }
+
+  &--sm {
+    min-height: 2.75rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  font-weight: 600;
+  color: var(--c-navy);
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 85% / 0 1.5px;
+  transition: background-size 0.5s var(--ease-out);
+
+  .ph {
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  &:hover {
+    background-size: calc(100% - 1.75rem) 1.5px;
+
+    .ph {
+      transform: translate(3px, -3px);
+    }
+  }
+}
+
+/* ---------- Selo de conteúdo provisório ---------- */
+
+.placeholder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px dashed rgb(29 111 216 / 0.45);
+  border-radius: 999px;
+  background: rgb(29 111 216 / 0.06);
+  color: #1a5fb8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Revelação ao rolar (diretiva appReveal) ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(6px);
+  transition:
+    opacity 0.9s var(--ease-out),
+    transform 1.1s var(--ease-out),
+    filter 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---------- Movimento reduzido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}

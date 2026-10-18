@@ -1,0 +1,43 @@
+<section id="equipe" class="section" aria-labelledby="team-title">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow" appReveal>Equipe</p>
+      <h2 id="team-title" class="section-title" appReveal="80">
+        Profissionais que cuidam de cada detalhe.
+      </h2>
+      <p appReveal="160">
+        <span class="placeholder-badge"
+          ><i class="ph ph-info" aria-hidden="true"></i> Nomes e fotos provisórios</span
+        >
+      </p>
+    </header>
+
+    <ul class="grid">
+      @for (member of members; track $index; let i = $index) {
+        <li [appReveal]="i * 120">
+          <article class="card">
+            <div class="photo">
+              @if (member.photo; as photo) {
+                <img
+                  [ngSrc]="photo"
+                  [alt]="member.photoAlt"
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              } @else {
+                <div class="photo-placeholder">
+                  <i class="ph ph-user" aria-hidden="true"></i>
+                  <span>Foto em breve</span>
+                </div>
+              }
+            </div>
+            <div class="info">
+              <h3 class="name">{{ member.name }}</h3>
+              <p class="role">{{ member.role }}</p>
+            </div>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
